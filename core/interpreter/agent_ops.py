@@ -22,6 +22,49 @@ def install_agent(token: str, target_dir="agents/"):
     except Exception as e:
         print(f"⚠️ Error during install: {e}")
 
+import os
+
+def apply_instruction_tree(tree: dict, memory, base_path=""):
+    """
+    Recursively apply the instruction-based structure from the agent.
+    Each item must define:
+      - type: 'file' or 'folder'
+      - operation: 'create', 'modify', 'delete', or None
+      - content (for files only)
+    """
+    for name, node in tree.items():
+        if not isinstance(node, dict) or "type" not in node:
+            continue  # skip malformed
+
+        full_path = os.path.join(base_path, name)
+
+        if node["type"] == "folder":
+            op = node.get("operation")
+            if op == "create":
+                memory.update_structure(full_path + "/")
+            elif op == "delete":
+                memory.delete_path(full_path + "/")
+
+            # Recurse into folder regardless
+            for child_name, child_node in node.items():
+                if child_name in ["type", "operation"]:
+                    continue
+                apply_instruction_tree({child_name: child_node}, memory, full_path)
+
+        elif node["type"] == "file":
+            op = node.get("operation")
+            content = node.get("content", "")
+            if op == "create":
+                memory.update_structure(full_path, content)
+            elif op == "modify":
+                memory.update_file_contents(full_path, content)
+            elif op == "delete":
+                memory.delete_path(full_path)
+
+    print("🤖 TreeSketch: Structure instructions applied.")
+    memory.print_structure()
+
+
 def apply_agent_output(structure_dict, memory, root: str = ""):
     """
     Accepts a JSON string representing a nested folder/file structure.

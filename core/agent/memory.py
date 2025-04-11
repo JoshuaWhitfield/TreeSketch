@@ -66,3 +66,20 @@ class TreeMemory:
         recurse(self.structure, base_path)
         return result
 
+    def update_file_contents(self, path: str, content: str):
+        """
+        Update the content of a file in memory and write it to disk.
+        """
+        parts = path.strip("/").split("/")
+        cursor = self.structure
+
+        for part in parts[:-1]:
+            cursor = cursor.setdefault(part + "/", {})
+
+        final = parts[-1]
+        cursor[final] = content
+
+        full_path = os.path.join(self.output_root, *parts)
+        os.makedirs(os.path.dirname(full_path), exist_ok=True)
+        with open(full_path, "w", encoding="utf-8") as f:
+            f.write(content or "")
