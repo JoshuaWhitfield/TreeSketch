@@ -1,0 +1,27 @@
+.sidebar {
+    width: 20vw;
+    background-color: #1C1C1C;
+    padding: 1rem;
+    overflow-y: auto;
+    border-right: 1px solid #222;
+}
+  
+.file {
+    color: #B18AFF;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.file:hover {
+    background-color: rgba(177, 138, 255, 0.1);
+}
+
+.folder {
+    margin-top: 0.5rem;
+}
+
+.nested {
+    margin-left: 1rem;
+}
+

@@ -1,0 +1,14 @@
+.editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #0D0D0D;
+    font-family: 'Fira Code', monospace;
+  }
+  
+  .editor-layout {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+  }
+  

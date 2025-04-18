@@ -1,0 +1,15 @@
+.terminal {
+    height: 20vh;
+    width: 100%;
+    background-color: #141414;
+    color: #B18AFF;
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+    overflow-y: auto;
+  }
+  
+  .terminal-output {
+    color: #42A5F5;
+  }
+  

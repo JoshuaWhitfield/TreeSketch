@@ -1,0 +1,37 @@
+.landing {
+  background-color: #0D0D0D;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #B18AFF;
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.landing-subtitle {
+  font-size: 1.2rem;
+  color: #CCCCCC;
+  margin-bottom: 2rem;
+}
+
+.enter-button {
+  background-color: #B18AFF;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.enter-button:hover {
+  background-color: #a678ff;
+}
